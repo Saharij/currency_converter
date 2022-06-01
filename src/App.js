@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
+
 import './App.css';
+import { getCurrency } from './api';
+import Header from './components/Header';
+import { decorateCurrencies } from './utils';
+import CurrencyConverter from './components/CurrencyConverter';
 
 function App() {
+  const [currencies, setCurrencies] = useState([]);
+
+  useEffect(() => {
+    getCurrency()
+      .then(res => {
+        setCurrencies(decorateCurrencies(res));
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header currencies={currencies} />
+      {currencies.length > 0 && (
+        <CurrencyConverter currencies={currencies} />
+      )}
+    </>
   );
-}
+};
 
 export default App;
