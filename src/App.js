@@ -18,9 +18,12 @@ function App() {
 
   return (
     <>
-      <Header currencies={currencies} />
-      {currencies.length > 0 && (
-        <CurrencyConverter currencies={currencies} />
+    <h1>Hello world</h1>
+    {currencies.length > 0 && (
+        <>
+          <Header currencies={currencies} />
+          <CurrencyConverter currencies={currencies} />
+        </>
       )}
     </>
   );
