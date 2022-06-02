@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import './App.css';
 import { getCurrency } from './api';
 import Header from './components/Header';
 import { decorateCurrencies } from './utils';
